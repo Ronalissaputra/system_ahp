@@ -5,6 +5,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 import { IoIosAdd } from "react-icons/io";
 import { BsArrowRightShort } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 import {
   Table,
   Thead,
@@ -13,18 +14,31 @@ import {
   Th,
   Td,
   TableContainer,
-  Tfoot,
   Button,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import Modalx from "../components/Modalx";
 
 const Kriteriapage = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Layout>
+      <Modalx
+        isOpen={isOpen}
+        onClose={onClose}
+        Title="Tambah Kriteria"
+        Btntitle="Submit"
+        Placeholder="Nama kriteria"
+      />
       <div className="flex justify-between items-center">
         <Title>Kriteria</Title>
         <div>
-          <Button leftIcon={<IoIosAdd />} colorScheme="green" size="sm">
+          <Button
+            onClick={onOpen}
+            leftIcon={<IoIosAdd />}
+            colorScheme="green"
+            size="sm"
+          >
             Tambah
           </Button>
           <NavLink to="/alternatif">

@@ -13,18 +13,32 @@ import {
   Th,
   Td,
   TableContainer,
-  Tfoot,
   Button,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import Modalx from "../components/Modalx";
 
 const Alternatifpage = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Layout>
+      <Modalx
+        isOpen={isOpen}
+        onClose={onClose}
+        Title="Tambah Alternatif"
+        Btntitle="Submit"
+        Placeholder="Nama alternatif"
+      />
       <div className="flex justify-between items-center">
         <Title>Alternatif</Title>
         <div>
-          <Button leftIcon={<IoIosAdd />} colorScheme="green" size="sm">
+          <Button
+            onClick={onOpen}
+            leftIcon={<IoIosAdd />}
+            colorScheme="green"
+            size="sm"
+          >
             Tambah
           </Button>
           <NavLink to="/perbandingankriteria">
