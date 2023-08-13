@@ -20,12 +20,12 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const Rankingpage = () => {
+const Prosespage = () => {
   return (
     <Layout>
       <div>
         <div className="mb-10">
-          <Title>Hasil Perhitungan</Title>
+          <Title>Matrix Perbandingan Berpasangan</Title>
           <TableContainer mt={2}>
             <Table borderWidth={2} borderTopColor="green" borderTopWidth={3}>
               <Thead>
@@ -60,7 +60,7 @@ const Rankingpage = () => {
           </TableContainer>
         </div>
         <div className="mb-10">
-          <Title>Perangkingan</Title>
+          <Title>Matrix Nilai Kriteria</Title>
           <TableContainer mt={2}>
             <Table borderWidth={2} borderTopColor="green" borderTopWidth={3}>
               <Thead>
@@ -126,9 +126,29 @@ const Rankingpage = () => {
             </Table>
           </TableContainer>
         </div>
+        <Alert status="error" my={5}>
+          <AlertIcon />
+          <Box>
+            <AlertTitle>Nilai Consistency Rasio Melebihi 10%!!!</AlertTitle>
+            <AlertDescription>
+              Mohon input kembali tabel perbandingan...
+            </AlertDescription>
+          </Box>
+        </Alert>
+        <div className="mb-10">
+          <NavLink to="/">
+            <Button
+              leftIcon={<BsArrowLeftShort />}
+              colorScheme="green"
+              size="sm"
+            >
+              Kembali
+            </Button>
+          </NavLink>
+        </div>
       </div>
     </Layout>
   );
 };
 
-export default Rankingpage;
+export default Prosespage;

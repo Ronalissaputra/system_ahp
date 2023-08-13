@@ -6,6 +6,7 @@ import Alternatifpage from "./page/Alternatifpage";
 import Perbandingankriteriapage from "./page/Perbandingankriteriapage";
 import Perbandinganalternatifpage from "./page/Perbandinganalternatifpage";
 import Rankingpage from "./page/Rankingpage";
+import Prosespage from "./page/Prosespage";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           element={<Perbandingankriteriapage />}
         />
         <Route path="/ranking" element={<Rankingpage />} />
+        <Route path="/proses" element={<Prosespage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -21,7 +21,10 @@ import Modalx from "../components/Modalx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useGetalternatif } from "../lib/alternatif/useGetalternatif";
-import {} from "";
+import { usGetalternatifbyid } from "../lib/alternatif/usGetalternatifbyid";
+import { usUpdatealternatif } from "../lib/alternatif/usUpdatealternatif";
+import { useCreatealternatif } from "../lib/alternatif/useCreatealternatif";
+import { useDeletealternatif } from "../lib/alternatif/useDeletealternatif";
 
 const Alternatifpage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -38,10 +41,10 @@ const Alternatifpage = () => {
   });
 
   const { mutate: create } = useMutation({
-    mutationKey: ["useCreatekriteria"],
-    mutationFn: useCreatekriteria,
+    mutationKey: ["useCreatealternatif"],
+    mutationFn: useCreatealternatif,
     onSuccess: (res) => {
-      queryClient.refetchQueries("useGetkriteria");
+      queryClient.refetchQueries("useGetalternatif");
       formik.resetForm();
       onClose();
     },
@@ -51,10 +54,10 @@ const Alternatifpage = () => {
   });
 
   const { mutate: edit } = useMutation({
-    mutationKey: ["Updatekriteria"],
-    mutationFn: (values) => usUpdatekriteria(oneData.id, values),
+    mutationKey: ["Updatealternatif"],
+    mutationFn: (values) => usUpdatealternatif(oneData.id, values),
     onSuccess: (res) => {
-      queryClient.refetchQueries("useGetkriteria");
+      queryClient.refetchQueries("useGetalternatif");
       formik.resetForm();
       setOneData(null);
       onClose();
@@ -66,11 +69,11 @@ const Alternatifpage = () => {
   });
 
   const { mutate: deleted } = useMutation({
-    mutationKey: ["useDeletekriteria"],
-    mutationFn: useDeletekriteria,
+    mutationKey: ["useDeletealternatif"],
+    mutationFn: useDeletealternatif,
     onSuccess: (res) => {
       console.log(res);
-      queryClient.refetchQueries("useGetkriteria");
+      queryClient.refetchQueries("useGetalternatif");
     },
     onError: (err) => {
       console.log(err);
@@ -92,7 +95,7 @@ const Alternatifpage = () => {
   });
 
   const hadleEdit = (id) => {
-    usGetkriteriabyid(id)
+    usGetalternatifbyid(id)
       .then((res) => {
         setOneData(res);
       })
@@ -117,6 +120,7 @@ const Alternatifpage = () => {
         Title={oneData ? "Edit Alternatif" : "Tambah Alternatif"}
         Btntitle={oneData ? "Edit" : "Submit"}
         Placeholder="Nama alternatif"
+        onSubmit={formik.handleSubmit}
         onClose={() => {
           setOneData(null);
           onClose();
@@ -124,8 +128,8 @@ const Alternatifpage = () => {
       >
         <input
           name="nama"
-          // value={formik.values.nama}
-          // onChange={formik.handleChange}
+          value={formik.values.nama}
+          onChange={formik.handleChange}
           type="text"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Nama alternatif"
@@ -170,10 +174,16 @@ const Alternatifpage = () => {
                   <Td>{index + 1}</Td>
                   <Td>{item.nama}</Td>
                   <Td isNumeric>
-                    <Button leftIcon={<CiEdit />} colorScheme="teal" size="sm">
+                    <Button
+                      onClick={() => hadleEdit(item.id)}
+                      leftIcon={<CiEdit />}
+                      colorScheme="teal"
+                      size="sm"
+                    >
                       Edit
                     </Button>
                     <Button
+                      onClick={() => handleDelete(item.id)}
                       leftIcon={<TiDeleteOutline />}
                       colorScheme="red"
                       size="sm"
