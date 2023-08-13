@@ -5,7 +5,7 @@ const Navbar = () => {
   const [ismenuOpen, setIsmenuOpen] = useState(false);
   const [isprofilOpen, setIsprofilOpen] = useState(false);
   return (
-    <nav className="top-0 sticky bg-white">
+    <nav className="top-0 sticky bg-white z-50">
       <div className="px-2 sm:px-6 lg:px-40">
         <div className="relative flex h-20 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
