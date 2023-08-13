@@ -117,7 +117,6 @@ const Kriteriapage = () => {
     <Layout>
       <Modalx
         isOpen={isOpen}
-        // onClose={onClose}
         Title={oneData ? "Edit Kriteria" : "Tambah Kriteria"}
         Btntitle={oneData ? "Edit" : "Submit"}
         onSubmit={formik.handleSubmit}
