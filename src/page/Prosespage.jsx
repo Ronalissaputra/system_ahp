@@ -104,18 +104,22 @@ const Prosespage = () => {
             <Table borderWidth={2} borderTopColor="green" borderTopWidth={3}>
               <Thead>
                 <Tr>
-                  <Th>Kriteria</Th>
-                  {alternatif.map((alternatifItem, colIndex) => (
-                    <Th key={colIndex}>{alternatifItem.nama}</Th>
+                  <Td borderWidth={2}>Kriteria</Td>
+                  {kriteria.map((alternatifItem, colIndex) => (
+                    <Td borderWidth={2} key={colIndex}>
+                      {alternatifItem.nama}
+                    </Td>
                   ))}
                 </Tr>
               </Thead>
               <Tbody>
                 {kriteria.map((kriteriaItem, rowIndex) => (
-                  <Tr key={rowIndex}>
-                    <Td>{kriteriaItem.nama}</Td>
+                  <Tr borderWidth={2} key={rowIndex}>
+                    <Td borderWidth={2}>{kriteriaItem.nama}</Td>
                     {alternatif.map((alternatifItem, colIndex) => (
-                      <Td key={colIndex}>{matrix[rowIndex][colIndex]}</Td>
+                      <Td borderWidth={2} key={colIndex}>
+                        {matrix[rowIndex][colIndex]}
+                      </Td>
                     ))}
                   </Tr>
                 ))}
@@ -128,47 +132,47 @@ const Prosespage = () => {
           <TableContainer mt={2}>
             <Table borderWidth={2} borderTopColor="green" borderTopWidth={3}>
               <Thead>
-                <Tr>
-                  <Th>Kriteria</Th>
-                  <Th>SMK 1 Indonesia</Th>
-                  <Th>SMK 1 Indonesia</Th>
-                  <Th>SMK 1 Indonesia</Th>
-                  <Th>Jumlah</Th>
-                  <Th>Priority Vector</Th>
+                <Tr borderWidth={2}>
+                  <Td borderWidth={2}>Kriteria</Td>
+                  <Td borderWidth={2}>SMK 1 Indonesia</Td>
+                  <Td borderWidth={2}>SMK 1 Indonesia</Td>
+                  <Td borderWidth={2}>SMK 1 Indonesia</Td>
+                  <Td borderWidth={2}>Jumlah</Td>
+                  <Td borderWidth={2}>Priority Vector</Td>
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>SMK 1 Indonesia</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td>25.4</Td>
-                  <Td>25.4</Td>
-                  <Td>25.4</Td>
-                  <Td>25.4</Td>
+                <Tr borderWidth={2}>
+                  <Td borderWidth={2}>SMK 1 Indonesia</Td>
+                  <Td borderWidth={2}>millimetres (mm)</Td>
+                  <Td borderWidth={2}>25.4</Td>
+                  <Td borderWidth={2}>25.4</Td>
+                  <Td borderWidth={2}>25.4</Td>
+                  <Td borderWidth={2}>25.4</Td>
+                </Tr>
+                <Tr borderWidth={2}>
+                  <Td borderWidth={2}>SMK 1 Indonesia</Td>
+                  <Td borderWidth={2}>centimetres (cm)</Td>
+                  <Td borderWidth={2}>30.48</Td>
+                  <Td borderWidth={2}>30.48</Td>
+                  <Td borderWidth={2}>30.48</Td>
+                  <Td borderWidth={2}>30.48</Td>
                 </Tr>
                 <Tr>
-                  <Td>SMK 1 Indonesia</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td>30.48</Td>
-                  <Td>30.48</Td>
-                  <Td>30.48</Td>
-                  <Td>30.48</Td>
+                  <Td borderWidth={2}>SMK 1 Indonesia</Td>
+                  <Td borderWidth={2}>metres (m)</Td>
+                  <Td borderWidth={2}>0.91444</Td>
+                  <Td borderWidth={2}>0.91444</Td>
+                  <Td borderWidth={2}>0.91444</Td>
+                  <Td borderWidth={2}>0.91444</Td>
                 </Tr>
-                <Tr>
-                  <Td>SMK 1 Indonesia</Td>
-                  <Td>metres (m)</Td>
-                  <Td>0.91444</Td>
-                  <Td>0.91444</Td>
-                  <Td>0.91444</Td>
-                  <Td>0.91444</Td>
-                </Tr>
-                <Tr>
+                <Tr borderWidth={2}>
                   <Td>Pricipe Eigen Vektor (λ Maks)</Td>
                   <Td></Td>
                   <Td></Td>
                   <Td></Td>
                   <Td></Td>
-                  <Td>0.91444</Td>
+                  <Td borderWidth={2}>0.91444</Td>
                 </Tr>
                 <Tr>
                   <Td>Consistency Index</Td>
@@ -176,7 +180,7 @@ const Prosespage = () => {
                   <Td></Td>
                   <Td></Td>
                   <Td></Td>
-                  <Td>0.91444</Td>
+                  <Td borderWidth={2}>0.91444</Td>
                 </Tr>
                 <Tr>
                   <Td>Consistency Rasio</Td>
@@ -184,7 +188,7 @@ const Prosespage = () => {
                   <Td></Td>
                   <Td></Td>
                   <Td></Td>
-                  <Td>0.91444</Td>
+                  <Td borderWidth={2}>0.91444</Td>
                 </Tr>
               </Tbody>
             </Table>
