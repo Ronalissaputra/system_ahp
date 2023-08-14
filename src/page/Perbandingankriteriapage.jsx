@@ -11,7 +11,6 @@ import {
   Radio,
   RadioGroup,
   TableContainer,
-  // number input
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -22,11 +21,53 @@ import {
 import { NavLink } from "react-router-dom";
 import { MdDataSaverOff } from "react-icons/md";
 import { BsArrowRightShort } from "react-icons/bs";
+import { useGetkriteria } from "../lib/kriteria/useGetkriteria";
+import { useQuery } from "@tanstack/react-query";
 
 const Perbandingankriteriapage = () => {
-  const [v1, setV1] = React.useState(null);
-  const [v2, setV2] = React.useState(null);
-  const [v3, setV3] = React.useState(null);
+  const [v1, setV1] = React.useState("");
+  const [attributes, setAttributes] = useState([]);
+  console.table("value", v1);
+
+  useQuery({
+    queryKey: ["useGetkriteria"],
+    queryFn: useGetkriteria,
+    onSuccess: (res) => {
+      setAttributes(res);
+    },
+  });
+
+  function generateRandomValue() {
+    return Math.floor(Math.random() * 10) + 1;
+  }
+
+  const pasanganNilai = [];
+  const [inputValues, setInputValues] = useState(pasanganNilai.map(() => 1));
+  for (let i = 0; i < attributes.length - 1; i++) {
+    for (let j = i + 1; j < attributes.length; j++) {
+      const nilaiA = generateRandomValue();
+      const nilaiB = generateRandomValue();
+
+      pasanganNilai.push([
+        { ...attributes[i], nilai: nilaiA },
+        { ...attributes[j], nilai: nilaiB },
+      ]);
+    }
+  }
+
+  const handleInputChange = (index, value) => {
+    const newInputValues = [...inputValues];
+    newInputValues[index] = value;
+    setInputValues(newInputValues);
+  };
+
+  const handleValueChange = (index, value, stateSetter) => {
+    stateSetter((prevState) => ({
+      ...prevState,
+      [index]: value,
+    }));
+  };
+
   return (
     <Layout>
       <div className="flex items-center justify-between">
@@ -56,63 +97,37 @@ const Perbandingankriteriapage = () => {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>
-                <RadioGroup onChange={setV1} value={v1}>
-                  <Radio value="1" mr={20}>
-                    Perbandingan 1
-                  </Radio>
-                  <Radio value="2">Perbandingan 1</Radio>
-                </RadioGroup>
-              </Td>
-              <Td isNumeric>
-                <NumberInput defaultValue={1} min={1} max={9}>
-                  <NumberInputField w={40} h={8} />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <RadioGroup onChange={setV2} value={v2}>
-                  <Radio value="1" mr={20}>
-                    Perbandingan 1
-                  </Radio>
-                  <Radio value="2">Perbandingan 1</Radio>
-                </RadioGroup>
-              </Td>
-              <Td isNumeric>
-                <NumberInput defaultValue={1} min={1} max={9}>
-                  <NumberInputField w={40} h={8} />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Td>
-            </Tr>
-            <Tr>
-              <Td>
-                <RadioGroup onChange={setV3} value={v3}>
-                  <Radio value="1" mr={20}>
-                    Perbandingan 1
-                  </Radio>
-                  <Radio value="2">Perbandingan 1</Radio>
-                </RadioGroup>
-              </Td>
-              <Td isNumeric>
-                <NumberInput defaultValue={1} min={1} max={9}>
-                  <NumberInputField w={40} h={8} />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Td>
-            </Tr>
+            {pasanganNilai.map((pasangan, index) => (
+              <Tr key={index}>
+                <Td>
+                  <RadioGroup
+                    onChange={(value) => handleValueChange(index, value, setV1)}
+                    value={v1[index] || ""} // Tambahkan ini
+                  >
+                    <Radio value={`${pasangan[0].nama} `} w="50%">
+                      Apa {pasangan[0].nama} dominan dari {pasangan[1].nama} ?
+                    </Radio>
+                    <Radio value={`${pasangan[1].nama}`}>
+                      Apakah {pasangan[1].nama} lebih dari {pasangan[0].nama} ?
+                    </Radio>
+                  </RadioGroup>
+                </Td>
+                <Td isNumeric>
+                  <NumberInput
+                    defaultValue={inputValues[index]}
+                    min={1}
+                    max={9}
+                    onChange={(value) => handleInputChange(index, value)}
+                  >
+                    <NumberInputField w={40} h={8} />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>
