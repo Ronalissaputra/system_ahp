@@ -7,12 +7,16 @@ import Perbandingankriteriapage from "./page/Perbandingankriteriapage";
 import Perbandinganalternatifpage from "./page/Perbandinganalternatifpage";
 import Rankingpage from "./page/Rankingpage";
 import Prosespage from "./page/Prosespage";
+import Loginpage from "./page/Loginpage";
+import Registerpage from "./page/Registerpage";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Loginpage />} />
+        <Route path="/register" element={<Registerpage />} />
+        <Route path="/home" element={<Homepage />} />
         <Route path="/kriteria" element={<Kriteriapage />} />
         <Route path="/alternatif" element={<Alternatifpage />} />
         <Route
