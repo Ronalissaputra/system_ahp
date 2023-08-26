@@ -4,14 +4,12 @@ import Layout from "../layout/Layout";
 const Homepage = () => {
   return (
     <Layout>
-      <div className="flex-row text-center justify-center lg:space-x-5 items-center font-bold">
-        <div className="w-full flex justify-center">
-          <img
-            className="w-40"
-            src="https://i.pinimg.com/originals/58/32/bb/5832bb17388f735076fb0ee6a0bffbac.png"
-            alt="logo unimerz"
-          />
-        </div>
+      <div className="flex justify-center lg:space-x-2 items-center font-bold">
+        <img
+          src="https://i.pinimg.com/originals/58/32/bb/5832bb17388f735076fb0ee6a0bffbac.png"
+          alt="logo unimerz"
+          className="w-[500px]"
+        />
         <p className="lg:text-3xl text-xl">
           System Deteksi Kerusakan Mobil Toyota Avanza Menggunakan Metode Fuzzy
           Analytic Hierarchy Process Berbasis Website
